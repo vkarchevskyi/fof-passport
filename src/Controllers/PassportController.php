@@ -99,9 +99,17 @@ class PassportController implements RequestHandlerInterface
             'passport',
             $user->getId(),
             function (Registration $registration) use ($user) {
+                $userData = $user->toArray();
+                $avatarUrl = $userData['image_url'];
+
                 $registration
                     ->provideTrustedEmail($user->getEmail())
-                    ->setPayload($user->toArray());
+                    ->suggestUsername($userData['name'])
+                    ->setPayload($userData);
+
+                if ($avatarUrl) {
+                    $registration->provideAvatar($avatarUrl);
+                }
             }
         );
 
