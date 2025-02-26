@@ -1,5 +1,5 @@
 {
-    "name": "fof/passport",
+    "name": "vkarchevskyi/fof-passport",
     "description": "The OAuth2 (and Laravel passport) compatible oauth extension",
     "keywords": [
         "flarum",
