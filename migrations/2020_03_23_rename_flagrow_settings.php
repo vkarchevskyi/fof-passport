@@ -31,7 +31,7 @@ return [
             $value = $settings->get('flagrow.passport.'.$key);
 
             if (!is_null($value)) {
-                $settings->set('fof-passport.'.$key, $value);
+                $settings->set('vkarchevskyi-fof-passport.'.$key, $value);
                 $settings->delete('flagrow.passport.'.$key);
             }
         }
