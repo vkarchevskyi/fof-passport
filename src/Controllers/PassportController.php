@@ -101,10 +101,11 @@ class PassportController implements RequestHandlerInterface
             function (Registration $registration) use ($user) {
                 $userData = $user->toArray();
                 $avatarUrl = $userData['image_url'];
+                $username = preg_replace('/[^a-z0-9-_]/i', '', $userData['name']);
 
                 $registration
                     ->provideTrustedEmail($user->getEmail())
-                    ->suggestUsername($userData['name'])
+                    ->provide('username', $username)
                     ->setPayload($userData);
 
                 if ($avatarUrl) {
