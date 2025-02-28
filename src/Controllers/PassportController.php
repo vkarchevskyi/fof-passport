@@ -53,11 +53,18 @@ class PassportController implements RequestHandlerInterface
     /**
      * @return array
      */
-    protected function getAuthorizationUrlOptions()
+    protected function getAuthorizationUrlOptions(ServerRequestInterface $request)
     {
-        $scopes = $this->settings->get('vkarchevskyi-fof-passport.app_oauth_scopes', '');
+        $options = [];
 
-        return ['scope' => $scopes];
+        if ($scopes = $this->settings->get('vkarchevskyi-fof-passport.app_oauth_scopes', '')) {
+            $options['scope'] = $scopes;
+        }
+        if (isset($request->getQueryParams()['to_registration'])) {
+            $options['to_registration'] = true;
+        }
+
+        return $options;
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
@@ -78,7 +85,7 @@ class PassportController implements RequestHandlerInterface
         $code = Arr::get($queryParams, 'code');
 
         if (!$code) {
-            $authUrl = $provider->getAuthorizationUrl($this->getAuthorizationUrlOptions());
+            $authUrl = $provider->getAuthorizationUrl($this->getAuthorizationUrlOptions($request));
             $session->put('oauth2state', $provider->getState());
 
             return new RedirectResponse($authUrl);
