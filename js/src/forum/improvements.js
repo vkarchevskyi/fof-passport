@@ -1,9 +1,7 @@
 import { extend, override } from 'flarum/common/extend';
-import HeaderPrimary from 'flarum/forum/components/HeaderPrimary';
 import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
 import LogInButton from 'flarum/forum/components/LogInButton';
 import IndexPage from "flarum/forum/components/IndexPage";
-import Link from "flarum/common/components/Link";
 import DiscussionComposer from "flarum/forum/components/DiscussionComposer";
 import SignUpModal from "flarum/forum/components/SignUpModal";
 import LogInModal from "flarum/forum/components/LogInModal";
@@ -16,7 +14,7 @@ override(HeaderSecondary.prototype, 'items', function (original) {
             'logIn',
             LogInButton.component(
                 {
-                    className: 'Button LogInButton--passport',
+                    className: 'LogInButton--passport',
                     path: '/auth/passport',
                 },
                 'Log In'
@@ -29,7 +27,7 @@ override(HeaderSecondary.prototype, 'items', function (original) {
             'signUp',
             LogInButton.component(
                 {
-                    className: 'Button SignUpButton--passport',
+                    className: 'SignUpButton--passport',
                     path: '/auth/passport?to_registration=1',
                 },
                 'Sign Up'
@@ -48,7 +46,7 @@ override(IndexPage.prototype, 'newDiscussionAction', function () {
 
             return resolve(app.composer);
         } else {
-            document.querySelector('.Button.LogInButton--passport').click();
+            document.querySelector('.LogInButton--passport').click();
 
             return reject();
         }
@@ -60,7 +58,7 @@ extend(SignUpModal.prototype, 'oncreate', () => {
 });
 
 override(LogInModal.prototype, 'oninit', () => {
-    document.querySelector('.Button.LogInButton--passport').click();
+    document.querySelector('.LogInButton--passport').click();
     document.querySelector('body').style.display = 'block';
     document.querySelector('#modal').remove();
 });
