@@ -14,7 +14,7 @@ override(HeaderSecondary.prototype, 'items', function (original) {
             'logIn',
             LogInButton.component(
                 {
-                    className: 'LogInButton--passport',
+                    className: 'LinksButton Button Button--link LogInButton--passport',
                     path: '/auth/passport',
                 },
                 'Log In'
@@ -27,7 +27,7 @@ override(HeaderSecondary.prototype, 'items', function (original) {
             'signUp',
             LogInButton.component(
                 {
-                    className: 'SignUpButton--passport',
+                    className: 'LinksButton Button Button--link SignUpButton--passport',
                     path: '/auth/passport?to_registration=1',
                 },
                 'Sign Up'
@@ -54,11 +54,11 @@ override(IndexPage.prototype, 'newDiscussionAction', function () {
 });
 
 extend(SignUpModal.prototype, 'oncreate', () => {
-    document.querySelector('.SignUpModal form button[type="submit"]').click();
+    document.querySelector('.Button.SignUpModal form button[type="submit"]').click();
 });
 
 override(LogInModal.prototype, 'oninit', () => {
-    document.querySelector('.LogInButton--passport').click();
+    document.querySelector('.Button.LogInButton--passport').click();
     document.querySelector('body').style.display = 'block';
     document.querySelector('#modal').remove();
 });
