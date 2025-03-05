@@ -3,7 +3,7 @@
 }
 
 @media (min-width: 768px) {
-    #header-secondary, #header-navigation {
+    #header-primary, #header-secondary, #header-navigation {
         padding-top: 4px;
     }
 
@@ -19,6 +19,9 @@
     color: rgb(222, 181, 111);
     flex-shrink: 0;
     font-weight: bold;
+    font-size: 0.85rem;
+    width: 7rem;
+    line-height: 1rem;
 }
 
 #home-link::before {
