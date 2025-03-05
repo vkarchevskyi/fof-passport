@@ -1,3 +1,19 @@
+@media (min-width: 768px) {
+    #header-secondary .item-signUp {
+        margin-right: 10px;
+    }
+}
+
+#header-secondary .LogInButton--passport,
+#header-secondary .SignUpButton--passport {
+    color: #151316;
+    font-weight: bold;
+    background-color: initial;
+    border: 1px solid rgba(21, 19, 22, .2);
+    border-radius: 9999rem;
+    text-align: center;
+}
+
 .TagTiles {
     display: flex;
     flex-wrap: wrap;
