@@ -40,7 +40,7 @@
     }
 }
 
-#home-link:hover {
+#home-link:hover, #home-link::before:hover {
     color: rgb(197, 155, 82);
     text-decoration: none;
 }
