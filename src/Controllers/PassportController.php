@@ -109,10 +109,12 @@ class PassportController implements RequestHandlerInterface
                 $userData = $user->toArray();
                 $avatarUrl = $userData['image_url'];
                 $username = preg_replace('/[^a-z0-9-_]/i', '', $userData['name']);
+                $nickname = empty($userData['display_name']) ? $username : $userData['display_name'];
 
                 $registration
                     ->provideTrustedEmail($user->getEmail())
                     ->provide('username', $username)
+                    ->provide('nickname', $nickname)
                     ->setPayload($userData);
 
                 if ($avatarUrl) {
