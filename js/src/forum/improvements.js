@@ -43,7 +43,9 @@ override(HeaderSecondary.prototype, 'items', function (original) {
 override(EditUserModal.prototype, 'fields', (original) => {
     const items = original();
 
-    items.remove('username');
+    if (!app.session.user.isAdmin()) {
+        items.remove('username');
+    }
 
     return items;
 });
