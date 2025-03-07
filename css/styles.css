@@ -65,7 +65,7 @@
     --control-danger-bg-hover: #ffc3c3;
     --control-danger-bg-active: #faa;
     --control-danger-bg-disabled: #fdd;
-    --muted-more-color: #aaa;
+    --muted-more-color: #000000;
     --muted-more-bg: rgba(170,170,170,0.3);
     --muted-more-bg-hover: rgba(157,157,157,0.35);
     --muted-more-bg-active: rgba(145,145,145,0.4);
