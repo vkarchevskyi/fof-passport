@@ -41,8 +41,11 @@ override(HeaderSecondary.prototype, 'items', function (original) {
 });
 
 override(EditUserModal.prototype, 'fields', (original) => {
-    console.log(original());
-    return original();
+    const items = original();
+
+    items.remove('username');
+
+    return items;
 });
 
 override(IndexPage.prototype, 'newDiscussionAction', function () {
