@@ -1,4 +1,6 @@
 import { extend, override } from 'flarum/common/extend';
+import EditUserModal from "flarum/common/components/EditUserModal";
+import app from 'flarum/forum/app';
 import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
 import LogInButton from 'flarum/forum/components/LogInButton';
 import IndexPage from "flarum/forum/components/IndexPage";
@@ -36,6 +38,11 @@ override(HeaderSecondary.prototype, 'items', function (original) {
     }
 
     return items
+});
+
+override(EditUserModal.prototype, 'fields', (original) => {
+    console.log(original());
+    return original();
 });
 
 override(IndexPage.prototype, 'newDiscussionAction', function () {
