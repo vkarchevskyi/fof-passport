@@ -91,7 +91,7 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
   });
 
   extend(SignUpModal.prototype, 'oncreate', () => {
-    document.querySelector('.Button.SignUpModal form button[type="submit"]').click();
+    document.querySelector('.SignUpModal form button[type="submit"]').click();
   });
 
   override(LogInModal.prototype, 'oninit', () => {
