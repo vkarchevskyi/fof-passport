@@ -7,6 +7,7 @@ import IndexPage from "flarum/forum/components/IndexPage";
 import DiscussionComposer from "flarum/forum/components/DiscussionComposer";
 import SignUpModal from "flarum/forum/components/SignUpModal";
 import LogInModal from "flarum/forum/components/LogInModal";
+import Stream from 'flarum/common/utils/Stream';
 
 override(HeaderSecondary.prototype, 'items', function (original) {
     const items = original();
