@@ -100,6 +100,20 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
     //document.querySelector('.SignUpModal form button[type="submit"]').click();
   });
 
+    extend(SignUpModal.prototype, 'submitData', function (data) {
+        if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
+
+        if (app.forum.attribute('setNicknameOnRegistration')) {
+            // data.nickname = this.nickname();
+            data.nickname = this.username();
+            if (app.forum.attribute('randomizeUsernameOnRegistration')) {
+                const arr = new Uint32Array(2);
+                crypto.getRandomValues(arr);
+                data.username = arr.join('');
+            }
+        }
+    });
+
   override(LogInModal.prototype, 'oninit', () => {
     document.querySelector('.Button.LogInButton--passport').click();
     document.querySelector('body').style.display = 'block';
