@@ -82,44 +82,43 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
     });
   });
 
-  override(SignUpModal.prototype, 'oninit', function (original) {
+  override(SignUpModal.prototype, 'oninit', function (original, vnode) {
+    original(vnode);
+
     if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
 
-    console.log(original);
-
-    console.log(original());
+    console.log(this.attrs);
 
     this.nickname = Stream(this.attrs.nickname || '');
   });
 
   // extend(SignUpModal.prototype, 'oncreate', () => {
-      // if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
+  // if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
 
-      // console.log(this.attrs, this.nickname);
+  // console.log(this.attrs, this.nickname);
 
-      // this.nickname = Stream(this.attrs.nickname || '');
+  // this.nickname = Stream(this.attrs.nickname || '');
 
-    //document.querySelector('.SignUpModal form button[type="submit"]').click();
+  //document.querySelector('.SignUpModal form button[type="submit"]').click();
   // });
 
-    extend(SignUpModal.prototype, 'submitData', function (data) {
-        if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
+  extend(SignUpModal.prototype, 'submitData', function (data) {
+    if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
 
-        if (app.forum.attribute('setNicknameOnRegistration')) {
-            // data.nickname = this.nickname();
-            console.log(data);
-            data.nickname = this.nickname();
+    if (app.forum.attribute('setNicknameOnRegistration')) {
+      // data.nickname = this.nickname();
+      console.log(data);
+      data.nickname = this.nickname();
 
-            console.log(data);
+      console.log(data);
 
-
-            if (app.forum.attribute('randomizeUsernameOnRegistration')) {
-                const arr = new Uint32Array(2);
-                crypto.getRandomValues(arr);
-                data.username = arr.join('');
-            }
-        }
-    });
+      if (app.forum.attribute('randomizeUsernameOnRegistration')) {
+        const arr = new Uint32Array(2);
+        crypto.getRandomValues(arr);
+        data.username = arr.join('');
+      }
+    }
+  });
 
   override(LogInModal.prototype, 'oninit', () => {
     document.querySelector('.Button.LogInButton--passport').click();
