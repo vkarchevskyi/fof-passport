@@ -102,28 +102,48 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
   //document.querySelector('.SignUpModal form button[type="submit"]').click();
   // });
 
-  override(SignUpModal.prototype, 'submitData', function (original) {
-    const data = original();
+  //   override(SignUpModal.prototype, 'submitData', function (original) {
+  //     const data = original();
 
-    if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
+  //     if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
 
-    if (app.forum.attribute('setNicknameOnRegistration')) {
-      // data.nickname = this.nickname();
-      console.log(data);
-      // data.nickname = this.attrs.nickname;
+  //     if (app.forum.attribute('setNicknameOnRegistration')) {
+  //       // data.nickname = this.nickname();
+  //       console.log(data);
+  //       // data.nickname = this.attrs.nickname;
 
-      data.nickname = this.originalNickname();
+  //       data.nickname = this.originalNickname();
 
-      console.log(data);
+  //       console.log(data);
 
-      if (app.forum.attribute('randomizeUsernameOnRegistration')) {
-        const arr = new Uint32Array(2);
-        crypto.getRandomValues(arr);
-        data.username = arr.join('');
-      }
-    }
+  //       if (app.forum.attribute('randomizeUsernameOnRegistration')) {
+  //         const arr = new Uint32Array(2);
+  //         crypto.getRandomValues(arr);
+  //         data.username = arr.join('');
+  //       }
+  //     }
 
-    return data;
+  //     return data;
+  //   });
+
+  override(SignUpModal.prototype, 'onsubmit', function (original, e) {
+    e.preventDefault();
+
+    this.loading = true;
+
+    const body = this.submitData();
+    body.nickname = this.originalNickname();
+
+    console.log(body);
+
+    app
+      .request({
+        url: app.forum.attribute('baseUrl') + '/register',
+        method: 'POST',
+        body,
+        errorHandler: this.onerror.bind(this),
+      })
+      .then(() => window.location.reload(), this.loaded.bind(this));
   });
 
   override(LogInModal.prototype, 'oninit', () => {
