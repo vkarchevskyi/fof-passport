@@ -65,6 +65,12 @@ override(IndexPage.prototype, 'newDiscussionAction', function () {
     });
 });
 
+extend(SignUpModal.prototype, 'oninit', function () {
+    if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
+
+    this.nickname = Stream(this.attrs.nickname || '');
+});
+
 extend(SignUpModal.prototype, 'oncreate', () => {
     document.querySelector('.Button.SignUpModal form button[type="submit"]').click();
 });
