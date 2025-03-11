@@ -90,6 +90,10 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
     this.originalNickname = Stream(this.attrs.nickname || '');
   });
 
+  extend(SignUpModal.prototype, 'oncreate', () => {
+    document.querySelector('.SignUpModal form button[type="submit"]').click();
+  });
+
   override(SignUpModal.prototype, 'onsubmit', function (original, e) {
     e.preventDefault();
 
