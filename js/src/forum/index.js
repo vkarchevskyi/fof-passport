@@ -87,8 +87,6 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
 
     if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
 
-    console.log(this.attrs);
-
     this.originalNickname = Stream(this.attrs.nickname || '');
   });
 
@@ -99,8 +97,6 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
 
     const body = this.submitData();
     body.nickname = this.originalNickname();
-
-    console.log(body);
 
     app
       .request({
