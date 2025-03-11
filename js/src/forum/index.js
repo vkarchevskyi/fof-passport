@@ -85,6 +85,8 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
   extend(SignUpModal.prototype, 'oninit', function () {
     if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
 
+    console.log(this.attrs, this.nickname);
+
     this.nickname = Stream(this.attrs.nickname || '');
   });
 
