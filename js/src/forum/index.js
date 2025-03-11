@@ -102,7 +102,7 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
   //document.querySelector('.SignUpModal form button[type="submit"]').click();
   // });
 
-  extend(SignUpModal.prototype, 'submitData', function (data) {
+  override(SignUpModal.prototype, 'submitData', function (data) {
     if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
 
     if (app.forum.attribute('setNicknameOnRegistration')) {
