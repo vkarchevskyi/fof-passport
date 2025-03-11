@@ -82,10 +82,12 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
     });
   });
 
-  extend(SignUpModal.prototype, 'oninit', function () {
+  override(SignUpModal.prototype, 'oninit', function (original) {
     if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
 
-    console.log(this.attrs, this.nickname);
+    console.log(original);
+
+    console.log(original());
 
     this.nickname = Stream(this.attrs.nickname || '');
   });
