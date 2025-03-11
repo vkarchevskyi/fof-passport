@@ -89,7 +89,7 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
 
     console.log(this.attrs);
 
-    this.nickname = Stream(this.attrs.nickname || '');
+    this.originalNickname = Stream(this.attrs.nickname || '');
   });
 
   // extend(SignUpModal.prototype, 'oncreate', () => {
@@ -108,7 +108,9 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
     if (app.forum.attribute('setNicknameOnRegistration')) {
       // data.nickname = this.nickname();
       console.log(data);
-      data.nickname = this.nickname();
+      // data.nickname = this.attrs.nickname;
+
+      data.nickname = this.originalNickname();
 
       console.log(data);
 
