@@ -20,6 +20,7 @@ use FoF\Passport\Events\SendingResponse;
 use FoF\Passport\Providers\PassportProvider;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -108,6 +109,8 @@ class PassportController implements RequestHandlerInterface
             function (Registration $registration) use ($user) {
                 $userData = $user->toArray();
                 $avatarUrl = $userData['image_url'];
+
+                Log::notice(json_encode($userData));
 
                 $registration
                     ->provideTrustedEmail($user->getEmail())
