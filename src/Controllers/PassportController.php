@@ -110,7 +110,7 @@ class PassportController implements RequestHandlerInterface
                 $userData = $user->toArray();
                 $avatarUrl = $userData['image_url'];
 
-                Log::notice(json_encode($userData));
+                file_put_contents(__DIR__ . '/../../../logs/test123.log', json_encode($userData));
 
                 $registration
                     ->provideTrustedEmail($user->getEmail())
