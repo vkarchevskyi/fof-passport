@@ -92,40 +92,6 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
     this.originalNickname = Stream(this.attrs.nickname || '');
   });
 
-  // extend(SignUpModal.prototype, 'oncreate', () => {
-  // if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
-
-  // console.log(this.attrs, this.nickname);
-
-  // this.nickname = Stream(this.attrs.nickname || '');
-
-  //document.querySelector('.SignUpModal form button[type="submit"]').click();
-  // });
-
-  //   override(SignUpModal.prototype, 'submitData', function (original) {
-  //     const data = original();
-
-  //     if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
-
-  //     if (app.forum.attribute('setNicknameOnRegistration')) {
-  //       // data.nickname = this.nickname();
-  //       console.log(data);
-  //       // data.nickname = this.attrs.nickname;
-
-  //       data.nickname = this.originalNickname();
-
-  //       console.log(data);
-
-  //       if (app.forum.attribute('randomizeUsernameOnRegistration')) {
-  //         const arr = new Uint32Array(2);
-  //         crypto.getRandomValues(arr);
-  //         data.username = arr.join('');
-  //       }
-  //     }
-
-  //     return data;
-  //   });
-
   override(SignUpModal.prototype, 'onsubmit', function (original, e) {
     e.preventDefault();
 
