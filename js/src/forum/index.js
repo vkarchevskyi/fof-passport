@@ -102,7 +102,9 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
   //document.querySelector('.SignUpModal form button[type="submit"]').click();
   // });
 
-  override(SignUpModal.prototype, 'submitData', function (data) {
+  override(SignUpModal.prototype, 'submitData', function (original) {
+    const data = original();
+
     if (app.forum.attribute('displayNameDriver') !== 'nickname') return;
 
     if (app.forum.attribute('setNicknameOnRegistration')) {
@@ -120,6 +122,8 @@ app.initializers.add('vkarchevskyi-fof-passport', () => {
         data.username = arr.join('');
       }
     }
+
+    return data;
   });
 
   override(LogInModal.prototype, 'oninit', () => {
